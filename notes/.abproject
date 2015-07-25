@@ -1,0 +1,45 @@
+{
+  "ProjectName": "Notes",
+  "ProjectGuid": "c804f328-b19b-4a7b-9302-1cd7dbdff30c",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.Notes",
+  "DisplayName": "Notes",
+  "Author": "",
+  "Description": "Notes",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{1fda64d2-8496-45e3-b166-c4e0def99100}",
+  "WP8ProductID": "{2501fa60-02af-420f-aa14-0b396a41fa26}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.Notes",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}

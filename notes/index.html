@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+
+</head>
+<body>
+<section data-role="layout" data-id="default"></section>
+
+<div id="list" data-role="view" data-layout="default" data-init="App.views.listView.onInit">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title">Заметки</span>
+            <a href="#form" data-role="button" data-align="right">Добавить</a>
+        </div>
+    </header>
+
+    <ul id="notes-list"></ul>
+</div>
+
+<div id="form" data-role="view" data-layout="default" data-init="App.views.formView.onInit">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a data-role="backbutton" data-align="left">Назад</a>
+            <span data-role="view-title">Заголовок</span>
+        </div>
+    </header>
+
+    Add/Edit form
+</div>
+
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
