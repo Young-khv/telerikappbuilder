@@ -47,3 +47,19 @@
 
    </body>
 </html>
+<script>
+    function noteClick(id) {
+        alert(id);
+    }
+
+    function deleteNote(id) {
+        var notes = JSON.parse(localStorage.getItem("notes"));
+        for (var i = 0; i < notes.length; i++)
+            if (notes[i].id == id) { 
+                notes.splice(i, 1);
+                break;
+            }
+        localStorage.setItem("notes", JSON.stringify(notes, null, 2));
+        location.reload();
+    }
+</script>

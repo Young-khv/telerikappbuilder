@@ -10,7 +10,7 @@ define([], function () {
                { id: 1, title: 'Заголовок 2', note: 'Заметка номер 2' },
                { id: 2, title: 'Заголовок 3', note: 'Заметка номер 3' }
             ];
-
+            
             var nextId = 3;
             notes = initNotes;
             localStorage.setItem("nextId", nextId);
@@ -19,10 +19,13 @@ define([], function () {
         
         e.view.element.find('#notes-list').kendoMobileListView({
             dataSource: kendo.data.DataSource.create({data: notes}),
-            template: "${title}",
+            template: "<a data-role='button' onclick = 'noteClick(${id})'> ${title}</a><a data-role='button' onclick ='deleteNote(${id})' >Delete</a>",
             removeNote: function(e) {
                 this.notes.remove(e.data);
                 this.notes.sync();
+            },
+            noteClick: function (e) {
+                alert();
             }
         });
         
