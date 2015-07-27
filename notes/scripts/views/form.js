@@ -1,6 +1,7 @@
 define([], function () {
 
     function onInit(e) {
+        
     }
 
     return {
