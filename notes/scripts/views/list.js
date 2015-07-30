@@ -19,7 +19,7 @@ define([], function () {
 
         e.view.element.find('#notes-list').kendoMobileListView({
             dataSource: kendo.data.DataSource.create({ data: notes }),
-            template: "<a data-role='button' onclick = 'loadEditNode(${id})'> ${title}</a><a data-role='button' onclick ='deleteNote(${id})' >Delete</a>"
+            template: "<a onclick = 'loadEditNode(${id})'> ${title}</a><a style='float: right;' data-icon='arrow-e' data-role='button' onclick ='deleteNote(${id})' ></a>"
         });
 
     }
