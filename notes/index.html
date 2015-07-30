@@ -1,30 +1,33 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <!--Dependencies-->
-        <title></title>
-        <meta charset="utf-8" />
-        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <script src="cordova.js"></script>
-        <script src="kendo/js/jquery.min.js"></script>
-        <script src="kendo/js/kendo.mobile.min.js"></script>
-        <script src="bower_components/requirejs/require.js"></script>
-        <script src="scripts/main.js"></script>
+<head>
+    <!--Dependencies-->
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
+    <script src="scripts/main.js"></script>
+    
+   
 
-    </head>
+</head>
 <body>
-<section data-role="layout" data-id="default"></section>
+    <section data-role="layout" data-id="default"></section>
     <!--list form-->
     <div id="list" data-role="view" data-layout="default" data-init="App.views.listView.onInit">
         <header data-role="header">
             <div data-role="navbar">
                 <span data-role="view-title">Заметки</span>
-                <a href="#form" data-role="button" data-align="right">Добавить</a>
+                <a data-role="button" data-align="right" onclick="loadEditNode(-1)">Добавить</a>
             </div>
         </header>
 
         <ul id="notes-list"></ul>
-    
+
     </div>
 
     <!--Edit form-->
@@ -33,29 +36,82 @@
             <header data-role="header">
                 <div data-role="navbar">
                     <a data-role="backbutton" data-align="left">Назад</a>
-                    <span id ="editTitle" data-role="view-title">Заголовок</span>
+                    <span id="editTitle" data-role="view-title"></span>
                 </div>
             </header>
-            Заголовок: <br>
-            <input id="noteTitle" type="text" placeholder="Введите заголовок"> <br>
-            Заметка: <br>
-            <textarea id="noteBody" placeholder="Текст заметки..." rows="5"> </textarea><br>
-            <a href="#list" data-role="button" data-align="right">Применить</a>
+          
+            <ul style=" list-style-type: none">
+                <li>
+                    <label for="noteTitle">Заголовок</label>
+                    <input id="noteTitle" type="text" style="width: 75%;" />
+                </li>
+                <li>
+                    <label for="noteBody">Текст заметки</label>
+                    <textarea id="noteBody" style="width: 75%;"></textarea>
+                </li>
+                <li>
+                    <a href="#list" data-role="button" data-align="right" onclick="saveNote()">Применить</a>
+                </li>
+                <li>
+                    <input id ="editNodeId" type = "hidden"/>
+                </li>
+            </ul>
 
         </form>
     </div>
 
-   </body>
+</body>
 </html>
 <script>
-    function noteClick(id) {
-        alert(id);
+    function loadEditNode(id) {
+        var notes = JSON.parse(localStorage.getItem("notes"));
+        var noteId = -1;
+        for (var i = 0; i < notes.length; i++) {
+            if (notes[i].id == id) {
+                noteId = i;
+                break;
+            }
+        }
+
+        if (noteId > -1) {
+            $("#editTitle").text("Изменить");
+            $("#noteBody").text( notes[noteId].note);
+            $("#noteTitle").val(notes[noteId].title);
+        } else {
+            $("#editTitle").text("Создать");
+            $("#noteBody").text("");
+            $("#noteTitle").val("");
+        }
+        $("#editNodeId").val(noteId);
+        window.location.href = "#form";
+    }
+
+    function saveNote() {
+        var noteId = $("#editNodeId").val();
+        var notes = JSON.parse(localStorage.getItem("notes"));
+        if (noteId > -1) {
+            for (var i = 0; i < notes.length; i++)
+                if (notes[i].id == noteId) {
+                    notes[i].title = $("#noteTitle").val();
+                    notes[i].note = $("#noteBody").val();
+                    break;
+                }
+            localStorage.setItem("notes", JSON.stringify(notes, null, 2));
+        } else {
+            var id = localStorage.getItem("nextId");
+            var newNote = { id: id, title: $("#noteTitle").val(), note: $("#noteBody").val() };
+            notes.push(newNote);
+            localStorage.setItem("nextId", id + 1);
+            localStorage.setItem("notes", JSON.stringify(notes, null, 2));
+            location.reload();
+        }
+
     }
 
     function deleteNote(id) {
         var notes = JSON.parse(localStorage.getItem("notes"));
         for (var i = 0; i < notes.length; i++)
-            if (notes[i].id == id) { 
+            if (notes[i].id == id) {
                 notes.splice(i, 1);
                 break;
             }

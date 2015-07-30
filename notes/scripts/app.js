@@ -1,3 +1,4 @@
+
 // Global access point
 var App = {};
 
