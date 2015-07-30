@@ -103,9 +103,8 @@
             notes.push(newNote);
             localStorage.setItem("nextId", id + 1);
             localStorage.setItem("notes", JSON.stringify(notes, null, 2));
-            location.reload();
         }
-
+        location.reload();
     }
 
     function deleteNote(id) {
